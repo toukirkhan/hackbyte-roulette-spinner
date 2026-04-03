@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎰 HackByte Roulette Spinner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <!-- Confetti container -->
+  <div id="confetti-container"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <h1 class="header-title">🎰 HackByte Roulette Spinner</h1>
+    <p class="header-sub">Upload participants, spin the wheel, reveal the winner!</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Upload Section -->
+    <section class="card upload-section">
+      <h2>📸 Upload Participants</h2>
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-zone-inner">
+          <span class="drop-icon">📂</span>
+          <p>Drag &amp; drop images here</p>
+          <p class="small">or</p>
+          <label class="btn btn-gold" for="file-input">Choose Files</label>
+          <input type="file" id="file-input" multiple accept="image/*" hidden />
+        </div>
+      </div>
+      <div id="upload-status" class="upload-status hidden"></div>
+    </section>
+
+    <!-- Participants Grid -->
+    <section class="card participants-section">
+      <div class="section-header">
+        <h2>👥 Participants <span id="active-count" class="badge">0 active</span></h2>
+      </div>
+      <div id="participants-grid" class="participants-grid">
+        <p class="empty-state" id="empty-state">No participants yet. Upload some images above!</p>
+      </div>
+    </section>
+
+    <!-- Roulette Spin Section -->
+    <section class="card spin-section">
+      <h2>🎰 Spin the Wheel</h2>
+      <div class="roulette-wrapper">
+        <div id="roulette-strip-container" class="roulette-strip-container hidden">
+          <div id="roulette-strip" class="roulette-strip"></div>
+        </div>
+        <div id="spin-idle" class="spin-idle">
+          <div class="wheel-graphic">🎡</div>
+          <p>Ready to spin!</p>
+        </div>
+      </div>
+      <button id="spin-btn" class="btn btn-spin" disabled>SPIN!</button>
+      <p id="spin-hint" class="spin-hint">Add at least 2 active participants to spin</p>
+    </section>
+
+    <!-- Winner Modal -->
+    <div id="winner-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="winner-banner">🏆 WINNER! 🏆</div>
+        <div class="winner-image-wrap">
+          <img id="winner-img" src="" alt="Winner" class="winner-img" />
+        </div>
+        <div id="winner-name" class="winner-name"></div>
+        <div id="winner-time" class="winner-time"></div>
+        <button class="btn btn-gold" id="close-modal-btn">✨ Close</button>
+      </div>
+    </div>
+
+    <!-- Results History -->
+    <section class="card results-section">
+      <div class="section-header">
+        <h2>📋 Winners History</h2>
+        <div class="results-actions">
+          <a href="/export-results" class="btn btn-sm btn-outline">⬇️ Export CSV</a>
+          <button id="clear-results-btn" class="btn btn-sm btn-danger">🗑️ Clear</button>
+        </div>
+      </div>
+      <div id="results-list" class="results-list">
+        <p class="empty-state" id="results-empty">No winners yet. Spin the wheel!</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>HackByte Roulette Spinner &copy; 2025 — Built with 🎰 &amp; ❤️</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/roulette.js') }}"></script>
+</body>
+</html>
