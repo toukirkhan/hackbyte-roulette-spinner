@@ -85,8 +85,8 @@ def upload():
 
         try:
             unique_name = save_thumbnail(file, file.filename)
-        except Exception as e:
-            return jsonify({'error': f'Failed to process image: {str(e)}'}), 500
+        except Exception:
+            return jsonify({'error': 'Failed to process image. Please check the file and try again.'}), 500
 
         participant_id = uuid.uuid4().hex
         participant = {
@@ -200,4 +200,5 @@ def export_results():
 if __name__ == '__main__':
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     os.makedirs('results', exist_ok=True)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    debug = os.environ.get('FLASK_DEBUG', 'false').lower() == 'true'
+    app.run(debug=debug, host='0.0.0.0', port=5000)

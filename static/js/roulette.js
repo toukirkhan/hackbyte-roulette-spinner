@@ -200,8 +200,16 @@ function startRename(id, nameEl) {
   };
 
   const onKey = (e) => {
-    if (e.key === 'Enter') { e.preventDefault(); finish(); }
-    if (e.key === 'Escape') { nameEl.contentEditable = 'false'; nameEl.textContent = participants.find(p => p.id === id)?.name || ''; nameEl.removeEventListener('blur', finish); nameEl.removeEventListener('keydown', onKey); }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      finish();
+    }
+    if (e.key === 'Escape') {
+      nameEl.contentEditable = 'false';
+      nameEl.textContent = participants.find(p => p.id === id)?.name || '';
+      nameEl.removeEventListener('blur', finish);
+      nameEl.removeEventListener('keydown', onKey);
+    }
   };
 
   nameEl.addEventListener('blur', finish, { once: true });
